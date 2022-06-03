@@ -29,10 +29,12 @@ public class Product {
     }
 
     public int getCost() {
-        return cost;
+        return this.cost;
     }
 
     public void setCost(int cost) {
         this.cost = cost;
     }
+
+
 }
