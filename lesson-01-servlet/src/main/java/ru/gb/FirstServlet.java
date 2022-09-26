@@ -21,8 +21,8 @@ public class FirstServlet implements Servlet {
 
     @Override
     public void service(ServletRequest servletRequest, ServletResponse servletResponse) throws  IOException {
-        servletResponse.setContentType("text/html");
-        servletResponse.setCharacterEncoding("UTF-8");
+//        servletResponse.setContentType("text/html");
+//        servletResponse.setCharacterEncoding("UTF-8");
         servletResponse.getWriter().println("<h1>привет из сервлета</h1>");
     }
 
