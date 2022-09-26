@@ -12,9 +12,11 @@ import java.io.PrintWriter;
 public class ProdServlet extends HttpServlet {
 
     private ProductRepository productRepository;
+    private Product product;
 
     @Override
     public void init() throws ServletException {
+        //this.product = new Product();
         this.productRepository = new ProductRepository();
         productRepository.insert(new Product(1,"Nissan teana", 2000));
         productRepository.insert(new Product(2,"lada vesta", 2300));
@@ -30,6 +32,10 @@ public class ProdServlet extends HttpServlet {
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+        if (req.getPathInfo() == null || req.getPathInfo().equals("/")) {
+            req.setAttribute("product", productRepository.findAll());
+            getServletContext().getRequestDispatcher("/user.jsp").forward(req, resp);
+        }
         PrintWriter writer = resp.getWriter();
         writer.println("<table>");
         writer.println("<tr>");
@@ -47,9 +53,18 @@ public class ProdServlet extends HttpServlet {
             writer.println("<th>" + prod.getTitle() + "</th>");
             writer.println("<th>" + prod.getCost() + "</th>");
             writer.println("</tr>");
-            
+
         }
         writer.println("</table>");
     }
 
+    @Override
+    protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+        if (req.getPathInfo() == null || req.getPathInfo().equals("/")) {
+            req.setAttribute("product", productRepository.findById(product.getId()));
+            getServletContext().getRequestDispatcher("/user_form.jsp").forward(req, resp);
+                            resp.getWriter().println("<p>Id: " + product.getId() + "</p>");
+                resp.getWriter().println("<p>Product title: " + product.getTitle() + "</p>");
+        }
+    }
 }
