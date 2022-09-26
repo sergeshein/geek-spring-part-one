@@ -58,6 +58,7 @@ public class ProdServlet extends HttpServlet {
             //    writer.println("<th>" + prod.getCost() + "</th>");
                 writer.println("</tr>");
 
+
             }
             writer.println("</table>");
         }else {
