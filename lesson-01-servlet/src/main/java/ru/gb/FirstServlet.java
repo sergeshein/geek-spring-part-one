@@ -12,14 +12,18 @@ public class FirstServlet implements Servlet {
 
     }
 
+
+
     @Override
     public ServletConfig getServletConfig() {
         return this.servletConfig;
     }
 
     @Override
-    public void service(ServletRequest servletRequest, ServletResponse servletResponse) throws ServletException, IOException {
-        servletResponse.getWriter().println("<h1>Hello from servlet</h1>");
+    public void service(ServletRequest servletRequest, ServletResponse servletResponse) throws  IOException {
+//        servletResponse.setContentType("text/html");
+//        servletResponse.setCharacterEncoding("UTF-8");
+        servletResponse.getWriter().println("<h1>привет из сервлета</h1>");
     }
 
     @Override
